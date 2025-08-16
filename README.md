@@ -1,10 +1,10 @@
 ## Informations sur le projet
 **Utiliser votre IDE préféré**
 # Étape 1 : Clonez le dépôt en utilisant l'URL Git du projet.
-git clone <VOTRE_URL_GIT>
+git clone https://github.com/Franco1234655/Marvel-Hero.git
 
 # Étape 2 : Accédez au répertoire du projet.
-cd < Marvel-Hero >
+cd Marvel-Hero
 
 # Étape 3 : Installez les dépendances nécessaires.
 npm i
