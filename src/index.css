@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Marvel Design System - Couleurs inspirées de l'univers Marvel */
+
+@layer base {
+  :root {
+    /* Marvel Brand Colors */
+    --marvel-red: 0 85% 60%;
+    --marvel-blue: 220 100% 50%;
+    --marvel-yellow: 45 100% 60%;
+    --marvel-dark: 220 15% 8%;
+    --marvel-gray: 220 10% 15%;
+    
+    /* Background & Layout */
+    --background: 220 15% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 10% 15%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 10% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary - Marvel Red */
+    --primary: 0 85% 60%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Secondary - Marvel Blue */
+    --secondary: 220 100% 50%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Accent - Marvel Yellow */
+    --accent: 45 100% 60%;
+    --accent-foreground: 220 15% 8%;
+
+    --muted: 220 10% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 10% 25%;
+    --input: 220 10% 20%;
+    --ring: 0 85% 60%;
+
+    --radius: 0.75rem;
+
+    /* Marvel Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--marvel-red)), hsl(var(--marvel-blue)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--marvel-red)) 0%, hsl(var(--marvel-blue)) 50%, hsl(var(--marvel-yellow)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 10% 12%) 100%);
+    
+    /* Animations & Effects */
+    --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-marvel: 0 10px 30px -10px hsl(var(--marvel-red) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--marvel-blue) / 0.4);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-roboto;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-orbitron;
+  }
+}
+
+@layer components {
+  /* Hero Card Animations */
+  .hero-card {
+    @apply relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 border border-border/50;
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-card:hover {
+    box-shadow: var(--shadow-marvel);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .hero-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent;
+    @apply translate-x-[-100%] transition-transform duration-700;
+  }
+
+  .hero-card:hover::before {
+    @apply translate-x-[100%];
+  }
+
+  /* Marvel Button Styles */
+  .btn-marvel {
+    @apply relative px-6 py-3 rounded-lg font-orbitron font-bold text-sm uppercase tracking-wider;
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground;
+    @apply transition-all duration-300 hover:scale-105 active:scale-95;
+    @apply border border-primary/30 shadow-lg;
+  }
+
+  .btn-marvel:hover {
+    box-shadow: var(--shadow-marvel);
+  }
+
+  .btn-marvel-secondary {
+    @apply relative px-4 py-2 rounded-lg font-orbitron font-medium text-sm;
+    @apply bg-secondary/20 text-secondary border border-secondary/30;
+    @apply transition-all duration-300 hover:bg-secondary/30 hover:scale-105;
+  }
+
+  .btn-marvel-danger {
+    @apply relative px-4 py-2 rounded-lg font-orbitron font-medium text-sm;
+    @apply bg-destructive/20 text-destructive border border-destructive/30;
+    @apply transition-all duration-300 hover:bg-destructive/30 hover:scale-105;
+  }
+
+  /* Loading Animation */
+  .marvel-pulse {
+    animation: marvel-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes marvel-pulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 40px hsl(var(--secondary) / 0.8);
+    }
+  }
+
+  /* Hero Floating Animation */
+  .animate-hero-float {
+    animation: hero-float 3s ease-in-out infinite;
+  }
+
+  @keyframes hero-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Power Pulse Animation */
+  .animate-power-pulse {
+    animation: power-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes power-pulse {
+    0%, 100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Slide Up Animation */
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gradient Text Classes */
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-gradient-marvel {
+    background: var(--gradient-primary);
+  }
+
+  /* Form Styles */
+  .marvel-input {
+    @apply w-full px-4 py-3 rounded-lg bg-input border border-border/50;
+    @apply text-foreground placeholder:text-muted-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
+    @apply transition-all duration-300;
+  }
+
+  /* Grid Layout */
+  .heroes-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+}
